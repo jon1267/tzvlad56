@@ -130,6 +130,11 @@ class APIGoodController extends Controller
                 return $query->where('number', $r['number']);
             });
         }
+        if(request('category')!== null ){
+            $query->when($r, function($query, $r) {
+                return $query->where('category_id', $r['category']);
+            });
+        }
         if(request('date_from')!== null && request('date_to')!==null){
             $query->when($r, function($query, $r) {
                 return $query->whereBetween(
